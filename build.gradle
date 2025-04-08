@@ -68,7 +68,7 @@ ext {
     androidXTestRulesVersion = '1.2.0'
     androidXAnnotations = '1.2.0'
     androidXLegacySupport = '1.0.0'
-    appCompatVersion = '1.3.1'
+    appCompatVersion = '1.7.0'
     archLifecycleVersion = '2.3.1'
     archTestingVersion = '2.1.0'
     cardVersion = '1.0.0'

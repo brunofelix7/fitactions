@@ -31,7 +31,7 @@ android {
 
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 5
+        versionCode 8
         versionName "1.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -98,6 +98,14 @@ android {
  all versions in a single place. This improves readability and helps managing project complexity.
  */
 dependencies {
+    // Google Shortcuts
+    implementation "androidx.core:core-ktx:1.6.0"
+    implementation "androidx.core:core-google-shortcuts:1.1.0"
+
+    // Google Slices
+    implementation "androidx.slice:slice-builders-ktx:1.0.0-alpha08"
+    implementation "androidx.slice:slice-core:1.0.0"
+    implementation "androidx.slice:slice-view:1.0.0"
 
     // App dependencies
     implementation "androidx.appcompat:appcompat:$appCompatVersion"

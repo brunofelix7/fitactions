@@ -45,7 +45,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
-                    android:host="todo.androidappactions.com"
+                    android:host="fitactions.brunofelix.dev"
                     android:scheme="https" />
             </intent-filter>
 
