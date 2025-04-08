@@ -22,10 +22,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dev.brunofelix.fitactions.R
 import dev.brunofelix.fitactions.util.getViewModelFactory
 import dev.brunofelix.fitactions.util.setupRefreshLayout
-import dev.brunofelix.R
-import dev.brunofelix.databinding.StatisticsFragBinding
+import dev.brunofelix.fitactions.databinding.StatisticsFragBinding
 
 /**
  * Main UI for the statistics screen.

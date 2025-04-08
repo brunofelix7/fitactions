@@ -21,10 +21,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.brunofelix.fitactions.Event
+import dev.brunofelix.fitactions.R
 import dev.brunofelix.fitactions.data.Result.Success
 import dev.brunofelix.fitactions.data.Task
 import dev.brunofelix.fitactions.data.source.TasksRepository
-import dev.brunofelix.R
 import kotlinx.coroutines.launch
 
 /**

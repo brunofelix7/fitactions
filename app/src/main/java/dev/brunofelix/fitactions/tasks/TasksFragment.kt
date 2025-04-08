@@ -25,6 +25,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -37,9 +38,8 @@ import dev.brunofelix.fitactions.util.setupRefreshLayout
 import dev.brunofelix.fitactions.util.setupSnackbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import dev.brunofelix.R
-import dev.brunofelix.databinding.TasksFragBinding
-
+import dev.brunofelix.fitactions.R
+import dev.brunofelix.fitactions.databinding.TasksFragBinding
 
 /**
  * Const values from App Action capability's parameter key
@@ -77,6 +77,14 @@ class TasksFragment : Fragment() {
 
         // Set a listener on task button
         setupFab()
+
+        activity?.intent?.extras?.getString(OPEN_APP_FEATURE)?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+
+        activity?.intent?.extras?.getString(GET_THING)?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
 
         viewModel.setFiltering(
             TasksFilterType.find(

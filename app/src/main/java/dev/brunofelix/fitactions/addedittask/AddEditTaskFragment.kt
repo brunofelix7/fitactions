@@ -29,8 +29,8 @@ import dev.brunofelix.fitactions.util.getViewModelFactory
 import dev.brunofelix.fitactions.util.setupRefreshLayout
 import dev.brunofelix.fitactions.util.setupSnackbar
 import com.google.android.material.snackbar.Snackbar
-import dev.brunofelix.R
-import dev.brunofelix.databinding.AddtaskFragBinding
+import dev.brunofelix.fitactions.R
+import dev.brunofelix.fitactions.databinding.AddtaskFragBinding
 
 /**
  * Main UI for the add task screen. Users can enter a task title and description.

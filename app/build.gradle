@@ -31,7 +31,7 @@ android {
 
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 8
+        versionCode 10
         versionName "1.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -90,7 +90,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    namespace 'dev.brunofelix'
+    namespace 'dev.brunofelix.fitactions'
 }
 
 /*

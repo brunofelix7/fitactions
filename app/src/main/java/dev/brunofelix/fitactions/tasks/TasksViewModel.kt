@@ -15,6 +15,7 @@
  */
 package dev.brunofelix.fitactions.tasks
 
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
@@ -25,6 +26,7 @@ import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import dev.brunofelix.fitactions.Event
+import dev.brunofelix.fitactions.R
 import dev.brunofelix.fitactions.data.Result
 import dev.brunofelix.fitactions.data.Result.Success
 import dev.brunofelix.fitactions.data.Task
@@ -33,7 +35,6 @@ import dev.brunofelix.fitactions.data.source.TasksRepository
 import dev.brunofelix.fitactions.tasks.TasksFilterType.ACTIVE_TASKS
 import dev.brunofelix.fitactions.tasks.TasksFilterType.ALL_TASKS
 import dev.brunofelix.fitactions.tasks.TasksFilterType.COMPLETED_TASKS
-import dev.brunofelix.R
 import kotlinx.coroutines.launch
 
 /**
@@ -106,7 +107,7 @@ class TasksViewModel(
      * [TasksFilterType.ACTIVE_TASKS]
      */
     fun setFiltering(requestType: TasksFilterType) {
-        savedStateHandle.set(TASKS_FILTER_SAVED_STATE_KEY, requestType)
+        savedStateHandle[TASKS_FILTER_SAVED_STATE_KEY] = requestType
 
         // Depending on the filter type, set the filtering label, icon drawables, etc.
         when (requestType) {
@@ -134,7 +135,7 @@ class TasksViewModel(
     }
 
     fun setFiltering(searchKeyword: String?) {
-        savedStateHandle.set(TASKS_FILTER_KEYWORD, searchKeyword)
+        savedStateHandle[TASKS_FILTER_KEYWORD] = searchKeyword
 
         // Refresh list
         loadTasks(false)

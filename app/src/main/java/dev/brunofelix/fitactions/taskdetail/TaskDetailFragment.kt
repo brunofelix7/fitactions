@@ -32,8 +32,8 @@ import dev.brunofelix.fitactions.util.getViewModelFactory
 import dev.brunofelix.fitactions.util.setupRefreshLayout
 import dev.brunofelix.fitactions.util.setupSnackbar
 import com.google.android.material.snackbar.Snackbar
-import dev.brunofelix.R
-import dev.brunofelix.databinding.TaskdetailFragBinding
+import dev.brunofelix.fitactions.R
+import dev.brunofelix.fitactions.databinding.TaskdetailFragBinding
 
 /**
  * Main UI for the task detail screen.

@@ -27,7 +27,7 @@ import androidx.lifecycle.LiveData
 import dev.brunofelix.fitactions.Event
 import dev.brunofelix.fitactions.ScrollChildSwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
-import dev.brunofelix.R
+import dev.brunofelix.fitactions.R
 
 /**
  * Transforms static java function Snackbar.make() to an extension function on View.

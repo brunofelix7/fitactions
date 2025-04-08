@@ -23,11 +23,11 @@ import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import dev.brunofelix.fitactions.Event
+import dev.brunofelix.fitactions.R
 import dev.brunofelix.fitactions.data.Result
 import dev.brunofelix.fitactions.data.Result.Success
 import dev.brunofelix.fitactions.data.Task
 import dev.brunofelix.fitactions.data.source.TasksRepository
-import dev.brunofelix.R
 import kotlinx.coroutines.launch
 
 /**

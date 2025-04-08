@@ -21,8 +21,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.brunofelix.fitactions.data.Task
+import dev.brunofelix.fitactions.databinding.TaskItemBinding
 import dev.brunofelix.fitactions.tasks.TasksAdapter.ViewHolder
-import dev.brunofelix.databinding.TaskItemBinding
 
 /**
  * Adapter for the task list. Has a reference to the [TasksViewModel] to send actions back to it.
