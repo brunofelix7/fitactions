@@ -19,6 +19,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -28,6 +29,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import dev.brunofelix.fitactions.BuildConfig
 import dev.brunofelix.fitactions.R
 
 /**
@@ -53,8 +55,7 @@ class TasksActivity : AppCompatActivity() {
                 .setOpenableLayout(drawerLayout)
                 .build()
         setupActionBarWithNavController(navController, appBarConfiguration)
-        findViewById<NavigationView>(R.id.nav_view)
-            .setupWithNavController(navController)
+        findViewById<NavigationView>(R.id.nav_view).setupWithNavController(navController)
     }
 
     fun logIntent(intent: Intent) {
@@ -80,6 +81,9 @@ class TasksActivity : AppCompatActivity() {
             .apply {
                 setStatusBarBackground(R.color.colorPrimaryDark)
             }
+        val currentVersion = "v${BuildConfig.VERSION_NAME} build ${BuildConfig.VERSION_CODE}"
+        val nav = drawerLayout.findViewById<NavigationView>(R.id.nav_view)
+        nav.getHeaderView(0).findViewById<TextView>(R.id.nav_build_number).text = currentVersion
     }
 }
 

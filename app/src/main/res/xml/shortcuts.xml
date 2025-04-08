@@ -15,6 +15,38 @@
   ~
   -->
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="active_id"
+        android:enabled="true"
+        android:icon="@drawable/ic_filter_list"
+        android:shortcutShortLabel="@string/label_active"
+        android:shortcutLongLabel="@string/label_long_active"
+        android:shortcutDisabledMessage="@string/label_disabled">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="dev.brunofelix.fitactions"
+            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity">
+            <extra
+                android:name="feature"
+                android:value="active_tasks" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:shortcutId="completed_id"
+        android:enabled="true"
+        android:icon="@drawable/ic_filter_list"
+        android:shortcutShortLabel="@string/label_completed"
+        android:shortcutLongLabel="@string/label_long_completed"
+        android:shortcutDisabledMessage="@string/label_disabled">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="dev.brunofelix.fitactions"
+            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity">
+            <extra
+                android:name="feature"
+                android:value="completed_tasks" />
+        </intent>
+    </shortcut>
 
     <!--    GET THING BII
         https://developers.google.com/assistant/app/reference/built-in-intents/common/get-thing
@@ -42,7 +74,6 @@
     -->
     <!-- Add Get Thing BII shortcuts   -->
 
-
     <!-- Add Open App Feature BII capability   -->
     <capability android:name="actions.intent.OPEN_APP_FEATURE">
         <intent
@@ -56,8 +87,11 @@
     </capability>
     <shortcut
         android:shortcutId="active_tasks"
+        android:enabled="true"
+        android:icon="@drawable/ic_filter_list"
         android:shortcutShortLabel="@string/label_active"
-        android:enabled="true">
+        android:shortcutLongLabel="@string/label_long_active"
+        android:shortcutDisabledMessage="@string/label_disabled">
         <capability-binding android:key="actions.intent.OPEN_APP_FEATURE">
             <parameter-binding
                 android:key="feature"
@@ -66,8 +100,11 @@
     </shortcut>
     <shortcut
         android:shortcutId="completed_tasks"
+        android:enabled="true"
+        android:icon="@drawable/ic_filter_list"
         android:shortcutShortLabel="@string/label_completed"
-        android:enabled="true">
+        android:shortcutLongLabel="@string/label_long_completed"
+        android:shortcutDisabledMessage="@string/label_disabled">
         <capability-binding android:key="actions.intent.OPEN_APP_FEATURE">
             <parameter-binding
                 android:key="feature"

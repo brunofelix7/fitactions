@@ -31,7 +31,7 @@ android {
 
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 10
+        versionCode 13
         versionName "1.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -80,6 +80,7 @@ android {
 
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -99,7 +100,7 @@ android {
  */
 dependencies {
     // Google Shortcuts
-    implementation "androidx.core:core-ktx:1.6.0"
+    implementation "androidx.core:core-ktx:1.15.0"
     implementation "androidx.core:core-google-shortcuts:1.1.0"
 
     // Google Slices
