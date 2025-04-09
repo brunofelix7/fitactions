@@ -86,6 +86,11 @@ class TasksFragment : Fragment() {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         }
 
+        val itemName = activity?.intent?.getStringExtra(GET_THING)
+        itemName?.let {
+            Toast.makeText(context, "Item recebido: $it", Toast.LENGTH_LONG).show()
+        }
+
         viewModel.setFiltering(
             TasksFilterType.find(
                 activity?.intent?.extras?.getString(
