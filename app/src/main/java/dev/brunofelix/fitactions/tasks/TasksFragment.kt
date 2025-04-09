@@ -16,6 +16,8 @@
 
 package dev.brunofelix.fitactions.tasks
 
+import android.content.pm.ShortcutManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,8 +29,10 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dev.brunofelix.fitactions.EventObserver
@@ -40,6 +44,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import dev.brunofelix.fitactions.R
 import dev.brunofelix.fitactions.databinding.TasksFragBinding
+import kotlinx.coroutines.launch
 
 /**
  * Const values from App Action capability's parameter key
@@ -88,8 +93,20 @@ class TasksFragment : Fragment() {
 
         val itemName = activity?.intent?.getStringExtra(GET_THING)
         itemName?.let {
-            Toast.makeText(context, "Item recebido: $it", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Item: $it", Toast.LENGTH_LONG).show()
         }
+
+        lifecycleScope.launch {
+            val shortcutManager = context?.getSystemService(ShortcutManager::class.java)
+            val shortcuts = shortcutManager?.dynamicShortcuts.orEmpty() + shortcutManager?.manifestShortcuts.orEmpty()
+            shortcuts.forEach {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    Log.d("Shortcuts", "Shortcut: ${it.id}, Intent: ${it.intent}, Capabilities: ${it.capabilities}")
+                }
+            }
+        }
+
+
 
         viewModel.setFiltering(
             TasksFilterType.find(

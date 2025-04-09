@@ -21,6 +21,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.pm.ShortcutInfoCompat
+import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.graphics.drawable.IconCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -31,6 +34,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import dev.brunofelix.fitactions.BuildConfig
 import dev.brunofelix.fitactions.R
+import java.util.Arrays
 
 /**
  * Main activity for the todoapp. Holds the Navigation Host Fragment and the Drawer, Toolbar, etc.
@@ -56,6 +60,23 @@ class TasksActivity : AppCompatActivity() {
                 .build()
         setupActionBarWithNavController(navController, appBarConfiguration)
         findViewById<NavigationView>(R.id.nav_view).setupWithNavController(navController)
+
+
+        /*var shortcutInfo = ShortcutInfoCompat.Builder(this, "get_milk")
+            .setShortLabel("Get milk")
+            .setLongLabel("Find my milk")
+            .setIcon(IconCompat.createWithResource(this, R.drawable.ic_check_circle_96dp))
+            .addCapabilityBinding(
+                "actions.intent.GET_THING", "thing.name", listOf("q")
+            )
+            .setIntent(
+                Intent(this, TasksActivity::class.java).apply {
+                    action = Intent.ACTION_VIEW
+                    putExtra("q", "milk")
+                }
+            )
+            .build()
+        ShortcutManagerCompat.pushDynamicShortcut(this, shortcutInfo)*/
     }
 
     fun logIntent(intent: Intent) {

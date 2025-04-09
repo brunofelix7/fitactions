@@ -55,8 +55,10 @@
     <string name="successfully_deleted_task_message">Task was deleted</string>
     <string name="successfully_added_task_message">Task added</string>
     <string name="no_data_description" />
-    <string name="get_thing_short_label">Ver item</string>
-    <string name="get_thing_long_label">Ver um item específico</string>
+
+    <string name="ver_item_short">Ver item</string>
+    <string name="ver_item_long">Ver um item específico</string>
+
 
     <!-- Content Descriptions -->
     <string name="tasks_header_image_content_description">Tasks header image</string>
