@@ -98,15 +98,20 @@ class TasksFragment : Fragment() {
 
         lifecycleScope.launch {
             val shortcutManager = context?.getSystemService(ShortcutManager::class.java)
-            val shortcuts = shortcutManager?.dynamicShortcuts.orEmpty() + shortcutManager?.manifestShortcuts.orEmpty()
-            shortcuts.forEach {
+            val shortcuts = shortcutManager?.dynamicShortcuts.orEmpty() +
+                    shortcutManager?.manifestShortcuts.orEmpty() +
+                    shortcutManager?.pinnedShortcuts.orEmpty()
+            shortcuts.forEach { shortcut ->
+                Log.d("Shortcuts", "ID: ${shortcut.id}")
+                Log.d("Shortcuts", "Short label: ${shortcut.shortLabel}")
+                Log.d("Shortcuts", "Intent: ${shortcut.intent}")
+                Log.d("Shortcuts", "Extras: ${shortcut.extras}")
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    Log.d("Shortcuts", "Shortcut: ${it.id}, Intent: ${it.intent}, Capabilities: ${it.capabilities}")
+                    val caps = shortcut.capabilities
+                    Log.d("Shortcuts", "Shortcut: ${shortcut.id} has capabilities: $caps")
                 }
             }
         }
-
-
 
         viewModel.setFiltering(
             TasksFilterType.find(

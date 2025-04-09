@@ -52,8 +52,8 @@
         android:shortcutId="get_thing_shortcut"
         android:enabled="true"
         android:icon="@drawable/ic_filter_list"
-        android:shortcutShortLabel="@string/ver_item_short"
-        android:shortcutLongLabel="@string/ver_item_short"
+        android:shortcutShortLabel="@string/find_item_short"
+        android:shortcutLongLabel="@string/find_item_long"
         android:shortcutDisabledMessage="@string/label_disabled">
         <intent
             android:action="android.intent.action.VIEW"
@@ -65,4 +65,15 @@
                 android:key="q" />
         </capability-binding>
     </shortcut>
+
+    <capability android:name="actions.intent.GET_THING">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="dev.brunofelix.fitactions"
+            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity">
+            <parameter
+                android:name="thing.name"
+                android:key="q"/>
+        </intent>
+    </capability>
 </shortcuts>

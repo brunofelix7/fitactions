@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "456674424976",
+    "project_id": "fitactions-3b31e",
+    "storage_bucket": "fitactions-3b31e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456674424976:android:9060bb740af0a89f0ac015",
+        "android_client_info": {
+          "package_name": "dev.brunofelix.fitactions"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGYyhSJS5NoEogITZ_Ct_kx4K-IszZt0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
