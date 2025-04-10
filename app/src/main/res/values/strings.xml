@@ -56,8 +56,11 @@
     <string name="successfully_added_task_message">Task added</string>
     <string name="no_data_description" />
 
-    <string name="find_item_short">Find item</string>
-    <string name="find_item_long">Find my item</string>
+    <string name="find_item_short">Get torus score</string>
+    <string name="find_item_long">Show my torus score</string>
+
+    <string name="get_item_short">Get item</string>
+    <string name="get_item_long">Show my item</string>
 
     <!-- Content Descriptions -->
     <string name="tasks_header_image_content_description">Tasks header image</string>

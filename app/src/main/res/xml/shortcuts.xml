@@ -1,79 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- OPEN_APP_FEATURE Built-in Intent -->
     <shortcut
-        android:shortcutId="get_active_shortcut"
+        android:shortcutId="get_torus_score"
         android:enabled="true"
         android:icon="@drawable/ic_filter_list"
-        android:shortcutShortLabel="@string/label_active"
-        android:shortcutLongLabel="@string/label_long_active"
+        android:shortcutShortLabel="@string/get_item_short"
+        android:shortcutLongLabel="@string/get_item_long"
         android:shortcutDisabledMessage="@string/label_disabled">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetPackage="dev.brunofelix.fitactions"
-            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity">
-            <extra
-                android:name="feature"
-                android:value="active_tasks" />
-        </intent>
-        <capability-binding android:key="actions.intent.OPEN_APP_FEATURE">
-            <parameter
-                android:name="feature.name"
-                android:key="feature" />
-        </capability-binding>
+        <capability android:name="actions.intent.GET_THING">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="dev.brunofelix.fitactions"
+                android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity">
+                <parameter
+                    android:name="thing.name"
+                    android:key="q"/>
+            </intent>
+        </capability>
     </shortcut>
-
-    <!-- OPEN_APP_FEATURE Built-in Intent -->
-    <shortcut
-        android:shortcutId="get_completed_shortcut"
-        android:enabled="true"
-        android:icon="@drawable/ic_filter_list"
-        android:shortcutShortLabel="@string/label_completed"
-        android:shortcutLongLabel="@string/label_long_completed"
-        android:shortcutDisabledMessage="@string/label_disabled">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetPackage="dev.brunofelix.fitactions"
-            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity">
-            <extra
-                android:name="feature"
-                android:value="completed_tasks" />
-        </intent>
-        <capability-binding android:key="actions.intent.OPEN_APP_FEATURE">
-            <parameter
-                android:name="feature.name"
-                android:key="feature" />
-        </capability-binding>
-    </shortcut>
-
-    <!-- GET_THING - Built-in Intent -->
-    <shortcut
-        android:shortcutId="get_thing_shortcut"
-        android:enabled="true"
-        android:icon="@drawable/ic_filter_list"
-        android:shortcutShortLabel="@string/find_item_short"
-        android:shortcutLongLabel="@string/find_item_long"
-        android:shortcutDisabledMessage="@string/label_disabled">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetPackage="dev.brunofelix.fitactions"
-            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity" />
-        <capability-binding android:key="actions.intent.GET_THING">
-            <parameter
-                android:name="thing.name"
-                android:key="q" />
-        </capability-binding>
-    </shortcut>
-
-    <capability android:name="actions.intent.GET_THING">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetPackage="dev.brunofelix.fitactions"
-            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity">
-            <parameter
-                android:name="thing.name"
-                android:key="q"/>
-        </intent>
-    </capability>
 </shortcuts>

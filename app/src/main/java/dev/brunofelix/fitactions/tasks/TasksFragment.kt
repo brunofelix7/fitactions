@@ -49,8 +49,8 @@ import kotlinx.coroutines.launch
 /**
  * Const values from App Action capability's parameter key
  */
-private const val OPEN_APP_FEATURE = "feature"
-private const val GET_THING = "q"
+const val OPEN_APP_FEATURE = "feature"
+const val GET_THING = "q"
 
 /**
  * Const value for logging errors
@@ -96,6 +96,11 @@ class TasksFragment : Fragment() {
             Toast.makeText(context, "Item: $it", Toast.LENGTH_LONG).show()
         }
 
+        val thingName = activity?.intent?.getStringExtra("thing_name")
+        thingName?.let {
+            Toast.makeText(context, "Torus Score: $it", Toast.LENGTH_LONG).show()
+        }
+
         lifecycleScope.launch {
             val shortcutManager = context?.getSystemService(ShortcutManager::class.java)
             val shortcuts = shortcutManager?.dynamicShortcuts.orEmpty() +
@@ -109,6 +114,7 @@ class TasksFragment : Fragment() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     val caps = shortcut.capabilities
                     Log.d("Shortcuts", "Shortcut: ${shortcut.id} has capabilities: $caps")
+                    Toast.makeText(context, "capabilities: $caps", Toast.LENGTH_LONG).show()
                 }
             }
         }

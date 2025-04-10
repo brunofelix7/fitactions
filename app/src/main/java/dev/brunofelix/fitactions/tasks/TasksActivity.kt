@@ -20,6 +20,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
@@ -40,18 +41,20 @@ import java.util.Arrays
  * Main activity for the todoapp. Holds the Navigation Host Fragment and the Drawer, Toolbar, etc.
  */
 class TasksActivity : AppCompatActivity() {
+
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val TAG = "TasksActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this)
+        val isShortcutExists = shortcuts.any { it.id == "get_torus_score_shortcut" }
+        if (!isShortcutExists) {
+            createShortcut()
+        }
         setContentView(R.layout.tasks_act)
         setupNavigationDrawer()
         setSupportActionBar(findViewById(R.id.toolbar))
-
-        // Logging for troubleshooting purposes
-        logIntent(intent)
 
         val navController: NavController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration =
@@ -61,35 +64,37 @@ class TasksActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         findViewById<NavigationView>(R.id.nav_view).setupWithNavController(navController)
 
-
-        /*var shortcutInfo = ShortcutInfoCompat.Builder(this, "get_milk")
-            .setShortLabel("Get milk")
-            .setLongLabel("Find my milk")
-            .setIcon(IconCompat.createWithResource(this, R.drawable.ic_check_circle_96dp))
-            .addCapabilityBinding(
-                "actions.intent.GET_THING", "thing.name", listOf("q")
-            )
-            .setIntent(
-                Intent(this, TasksActivity::class.java).apply {
-                    action = Intent.ACTION_VIEW
-                    putExtra("q", "milk")
-                }
-            )
-            .build()
-        ShortcutManagerCompat.pushDynamicShortcut(this, shortcutInfo)*/
-    }
-
-    fun logIntent(intent: Intent) {
-        val bundle: Bundle = intent.extras ?: return
-
-        Log.d(TAG, "======= logIntent ========= %s")
-        Log.d(TAG, "Logging intent data start")
-
-        bundle.keySet().forEach { key ->
-            Log.d(TAG, "[$key=${bundle.get(key)}]");
+        intent?.extras?.getString(OPEN_APP_FEATURE)?.let {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         }
 
-        Log.d(TAG, "Logging intent data complete")
+        intent?.extras?.getString(GET_THING)?.let {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        }
+
+        val itemName = intent?.getStringExtra(GET_THING)
+        itemName?.let {
+            Toast.makeText(this, "Item: $it", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun createShortcut() {
+        val intent = Intent(this, TasksActivity::class.java).apply {
+            action = Intent.ACTION_VIEW
+            putExtra("thing_name", "")
+        }
+        val shortcut = ShortcutInfoCompat.Builder(this, "get_torus_score_shortcut")
+            .setShortLabel("Get torus score")
+            .setLongLabel("Show my torus score")
+            .setIcon(IconCompat.createWithResource(this, R.drawable.ic_filter_list))
+            .setIntent(intent)
+            .addCapabilityBinding(
+                "actions.intent.GET_THING",
+                "thing.name",
+                listOf("thing_name")
+            )
+            .build()
+        ShortcutManagerCompat.pushDynamicShortcut(this, shortcut)
     }
 
     override fun onSupportNavigateUp(): Boolean {
