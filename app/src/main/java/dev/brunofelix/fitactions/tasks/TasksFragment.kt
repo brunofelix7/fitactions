@@ -79,56 +79,7 @@ class TasksFragment : Fragment() {
             viewmodel = viewModel
         }
         setHasOptionsMenu(true)
-
-        // Set a listener on task button
         setupFab()
-
-        activity?.intent?.extras?.getString(OPEN_APP_FEATURE)?.let {
-            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
-        }
-
-        activity?.intent?.extras?.getString(GET_THING)?.let {
-            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
-        }
-
-        val itemName = activity?.intent?.getStringExtra(GET_THING)
-        itemName?.let {
-            Toast.makeText(context, "Item: $it", Toast.LENGTH_LONG).show()
-        }
-
-        val thingName = activity?.intent?.getStringExtra("thing_name")
-        thingName?.let {
-            Toast.makeText(context, "Torus Score: $it", Toast.LENGTH_LONG).show()
-        }
-
-        lifecycleScope.launch {
-            val shortcutManager = context?.getSystemService(ShortcutManager::class.java)
-            val shortcuts = shortcutManager?.dynamicShortcuts.orEmpty() +
-                    shortcutManager?.manifestShortcuts.orEmpty() +
-                    shortcutManager?.pinnedShortcuts.orEmpty()
-            shortcuts.forEach { shortcut ->
-                Log.d("Shortcuts", "ID: ${shortcut.id}")
-                Log.d("Shortcuts", "Short label: ${shortcut.shortLabel}")
-                Log.d("Shortcuts", "Intent: ${shortcut.intent}")
-                Log.d("Shortcuts", "Extras: ${shortcut.extras}")
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    val caps = shortcut.capabilities
-                    Log.d("Shortcuts", "Shortcut: ${shortcut.id} has capabilities: $caps")
-                    Toast.makeText(context, "capabilities: $caps", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-
-        viewModel.setFiltering(
-            TasksFilterType.find(
-                activity?.intent?.extras?.getString(
-                    OPEN_APP_FEATURE
-                )
-            )
-        )
-
-        viewModel.setFiltering(activity?.intent?.extras?.getString(GET_THING))
-
         return viewDataBinding.root
     }
 
@@ -190,6 +141,41 @@ class TasksFragment : Fragment() {
         setupRefreshLayout(viewDataBinding.refreshLayout, viewDataBinding.tasksList)
         setupNavigation()
         setupFab()
+
+        activity?.intent?.extras?.getString(OPEN_APP_FEATURE)?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+
+        activity?.intent?.extras?.getString(GET_THING)?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+
+        lifecycleScope.launch {
+            val shortcutManager = context?.getSystemService(ShortcutManager::class.java)
+            val shortcuts = shortcutManager?.dynamicShortcuts.orEmpty() +
+                    shortcutManager?.manifestShortcuts.orEmpty() +
+                    shortcutManager?.pinnedShortcuts.orEmpty()
+            shortcuts.forEach { shortcut ->
+                Log.d("Shortcuts", "ID: ${shortcut.id}")
+                Log.d("Shortcuts", "Short label: ${shortcut.shortLabel}")
+                Log.d("Shortcuts", "Intent: ${shortcut.intent}")
+                Log.d("Shortcuts", "Extras: ${shortcut.extras}")
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    val caps = shortcut.capabilities
+                    Log.d("Shortcuts", "Shortcut: ${shortcut.id} has capabilities: $caps")
+                }
+            }
+        }
+
+        viewModel.setFiltering(
+            TasksFilterType.find(
+                activity?.intent?.extras?.getString(
+                    OPEN_APP_FEATURE
+                )
+            )
+        )
+
+        viewModel.setFiltering(activity?.intent?.extras?.getString(GET_THING))
     }
 
     private fun setupNavigation() {

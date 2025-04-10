@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
-        android:shortcutId="get_torus_score"
-        android:enabled="true"
-        android:icon="@drawable/ic_filter_list"
+        android:shortcutId="get_score"
         android:shortcutShortLabel="@string/get_item_short"
         android:shortcutLongLabel="@string/get_item_long"
-        android:shortcutDisabledMessage="@string/label_disabled">
-        <capability android:name="actions.intent.GET_THING">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:targetPackage="dev.brunofelix.fitactions"
-                android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity">
-                <parameter
-                    android:name="thing.name"
-                    android:key="q"/>
-            </intent>
-        </capability>
+        android:enabled="false"
+        android:icon="@drawable/ic_list">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity"
+            android:targetPackage="dev.brunofelix.fitactions" />
+        <capability-binding android:key="actions.intent.GET_THING">
+            <parameter-binding
+                android:value="q"
+                android:key="thing.name" />
+        </capability-binding>
     </shortcut>
+    <capability android:name="actions.intent.GET_THING">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity"
+            android:targetPackage="dev.brunofelix.fitactions">
+            <parameter
+                android:name="thing.name"
+                android:key="q"/>
+        </intent>
+    </capability>
 </shortcuts>

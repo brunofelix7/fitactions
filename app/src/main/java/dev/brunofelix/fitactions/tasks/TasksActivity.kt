@@ -24,6 +24,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.google.shortcuts.builders.CapabilityBuilder
 import androidx.core.graphics.drawable.IconCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -47,11 +48,6 @@ class TasksActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this)
-        val isShortcutExists = shortcuts.any { it.id == "get_torus_score_shortcut" }
-        if (!isShortcutExists) {
-            createShortcut()
-        }
         setContentView(R.layout.tasks_act)
         setupNavigationDrawer()
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -63,38 +59,29 @@ class TasksActivity : AppCompatActivity() {
                 .build()
         setupActionBarWithNavController(navController, appBarConfiguration)
         findViewById<NavigationView>(R.id.nav_view).setupWithNavController(navController)
-
-        intent?.extras?.getString(OPEN_APP_FEATURE)?.let {
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-        }
-
-        intent?.extras?.getString(GET_THING)?.let {
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-        }
-
-        val itemName = intent?.getStringExtra(GET_THING)
-        itemName?.let {
-            Toast.makeText(this, "Item: $it", Toast.LENGTH_LONG).show()
-        }
     }
 
     private fun createShortcut() {
-        val intent = Intent(this, TasksActivity::class.java).apply {
-            action = Intent.ACTION_VIEW
-            putExtra("thing_name", "")
+        val shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this)
+        val isShortcutExists = shortcuts.any { it.id == "get_torus_score_shortcut" }
+        if (!isShortcutExists) {
+            val intent = Intent(this, TasksActivity::class.java).apply {
+                action = Intent.ACTION_VIEW
+                putExtra("q", "")
+            }
+            val shortcut = ShortcutInfoCompat.Builder(this, "get_torus_score")
+                .setShortLabel("Get torus score")
+                .setLongLabel("Show my torus score")
+                .setIcon(IconCompat.createWithResource(this, R.drawable.ic_list))
+                .setIntent(intent)
+                .addCapabilityBinding(
+                    "actions.intent.GET_THING",
+                    "thing.name",
+                    listOf("q")
+                )
+                .build()
+            ShortcutManagerCompat.pushDynamicShortcut(this, shortcut)
         }
-        val shortcut = ShortcutInfoCompat.Builder(this, "get_torus_score_shortcut")
-            .setShortLabel("Get torus score")
-            .setLongLabel("Show my torus score")
-            .setIcon(IconCompat.createWithResource(this, R.drawable.ic_filter_list))
-            .setIntent(intent)
-            .addCapabilityBinding(
-                "actions.intent.GET_THING",
-                "thing.name",
-                listOf("thing_name")
-            )
-            .build()
-        ShortcutManagerCompat.pushDynamicShortcut(this, shortcut)
     }
 
     override fun onSupportNavigateUp(): Boolean {
