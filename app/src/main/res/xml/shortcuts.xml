@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
-        android:shortcutId="get_score"
+        android:shortcutId="shortcut_id03"
         android:shortcutShortLabel="@string/get_item_short"
         android:shortcutLongLabel="@string/get_item_long"
-        android:enabled="false"
+        android:enabled="true"
         android:icon="@drawable/ic_list">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity"
-            android:targetPackage="dev.brunofelix.fitactions" />
+        <intent android:action="android.intent.action.VIEW" />
         <capability-binding android:key="actions.intent.GET_THING">
             <parameter-binding
                 android:value="q"
@@ -17,10 +14,10 @@
         </capability-binding>
     </shortcut>
     <capability android:name="actions.intent.GET_THING">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetClass="dev.brunofelix.fitactions.tasks.TasksActivity"
-            android:targetPackage="dev.brunofelix.fitactions">
+        <app-widget
+            android:targetPackage="dev.brunofelix.fitactions"
+            android:targetClass="dev.brunofelix.fitactions.GoogleAssistantReceiver" />
+        <intent android:action="android.intent.action.VIEW">
             <parameter
                 android:name="thing.name"
                 android:key="q"/>
